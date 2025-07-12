@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2d1f0torcro"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uvdp8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qff3g"]
+size = Vector3(100, 1, 100)
+
+[node name="world" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(41.6294, 0, 0, 0, 41.6294, 0, 0, 0, 41.6294, 0, 0, 0)
+mesh = SubResource("PlaneMesh_uvdp8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.496096, 0)
+shape = SubResource("BoxShape3D_qff3g")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.735209, -0.669366, -0.106851, 0.592133, 0.557493, 0.581876, -0.32992, -0.49107, 0.806228, -6.42201, 12.1544, 7.40954)
+light_energy = 4.879
+shadow_enabled = true

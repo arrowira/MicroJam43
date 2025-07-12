@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://bo4qvs0iy8il3"]
+
+[ext_resource type="PackedScene" uid="uid://f2c4vjpiali8" path="res://models/car.blend" id="1_mwchs"]
+[ext_resource type="Script" path="res://character_body_3d.gd" id="1_myhv7"]
+[ext_resource type="Shader" path="res://pixelate.gdshader" id="2_co4sn"]
+[ext_resource type="Script" path="res://camera_pivot.gd" id="3_g2hiy"]
+[ext_resource type="Script" path="res://carArea.gd" id="4_oataa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ggryd"]
+size = Vector3(1.88281, 0.778381, 4.11921)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0rav3"]
+size = Vector3(4.28705, 1, 5.98303)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bncjx"]
+render_priority = 0
+shader = ExtResource("2_co4sn")
+
+[node name="car" type="Node3D"]
+
+[node name="cameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.559273, 0, 0)
+script = ExtResource("3_g2hiy")
+
+[node name="Camera3D" type="Camera3D" parent="cameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.923833, 0.382796, 0, -0.382796, 0.923833, 0, 8.038, 13.6884)
+current = true
+fov = 84.6
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_myhv7")
+
+[node name="carModel" parent="CharacterBody3D" instance=ExtResource("1_mwchs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0115435, 0.327044, 0.275049)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00355601, 0.405942, 0.851187)
+shape = SubResource("BoxShape3D_ggryd")
+
+[node name="Area3D" type="Area3D" parent="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_oataa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.173431, 0.795197, 0.149841)
+shape = SubResource("BoxShape3D_0rav3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_bncjx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MPHNumber" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 44.0
+offset_right = 86.0
+offset_bottom = 23.0
+text = "20"
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 42.0
+offset_bottom = 23.0
+text = "MPH:"
+
+[connection signal="area_entered" from="CharacterBody3D/Area3D" to="CharacterBody3D/Area3D" method="_on_area_entered"]
+[connection signal="body_entered" from="CharacterBody3D/Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]

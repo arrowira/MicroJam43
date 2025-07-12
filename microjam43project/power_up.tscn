@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://rkl4yop7u5dp"]
+
+[ext_resource type="PackedScene" uid="uid://cs7qxf3lw3uuy" path="res://models/untitled.blend" id="1_u4c7u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jxeul"]
+size = Vector3(1, 10.0531, 10.2623)
+
+[node name="PowerUp" type="Node3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="untitled" parent="." instance=ExtResource("1_u4c7u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.16736, 0)
+
+[node name="powerUpBody" type="StaticBody3D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="powerUpBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9127, -0.116364)
+shape = SubResource("BoxShape3D_jxeul")
