@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://s2tnm2wovs0s"]
+
+[ext_resource type="PackedScene" uid="uid://bwhn2xc0as43x" path="res://models/brokenCarSprite.blend" id="1_lhp6g"]
+
+[node name="BrokenCar" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.57203, 0)
+
+[node name="brokenCarSprite" parent="." instance=ExtResource("1_lhp6g")]

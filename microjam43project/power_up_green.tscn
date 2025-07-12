@@ -4,17 +4,17 @@
 [ext_resource type="Script" path="res://models/powerUp.gd" id="1_83u7d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jxeul"]
-size = Vector3(1, 10.0531, 10.2623)
+size = Vector3(1, 2.01616, 2.00674)
 
 [node name="PowerUpGreen" type="Node3D"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 
 [node name="powerUpBodyG" type="StaticBody3D" parent="."]
 collision_layer = 2
-script = ExtResource("1_83u7d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="powerUpBodyG"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9127, -0.116364)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06361, 0.0183522)
 shape = SubResource("BoxShape3D_jxeul")
 
 [node name="greenPUp" parent="." instance=ExtResource("1_2awch")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.421004, 0)
+script = ExtResource("1_83u7d")

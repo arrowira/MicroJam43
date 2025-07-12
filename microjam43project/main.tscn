@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqjtrfv7es4vp"]
+[gd_scene load_steps=8 format=3 uid="uid://cqjtrfv7es4vp"]
 
 [ext_resource type="PackedScene" uid="uid://bo4qvs0iy8il3" path="res://car.tscn" id="1_7ql5m"]
 [ext_resource type="PackedScene" uid="uid://c2d1f0torcro" path="res://world.tscn" id="1_agi6u"]
-[ext_resource type="PackedScene" uid="uid://rkl4yop7u5dp" path="res://power_up_red.tscn" id="3_3wvxi"]
-[ext_resource type="PackedScene" uid="uid://cqqt0ewkvgrvb" path="res://power_up_blue.tscn" id="4_8t4os"]
+[ext_resource type="Script" path="res://treeSpawn.gd" id="4_ho2o4"]
+[ext_resource type="Script" path="res://spawner.gd" id="5_snxsd"]
+[ext_resource type="PackedScene" uid="uid://bwslshu7lku3g" path="res://ramp.tscn" id="5_xc5y0"]
+[ext_resource type="AudioStream" uid="uid://ckbubq5qjnmwn" path="res://carGameMusic.mp3" id="6_8be7e"]
+[ext_resource type="PackedScene" uid="uid://dcxojqlmae4wu" path="res://rainbow.tscn" id="7_xee2g"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -12,8 +15,20 @@
 [node name="car" parent="." instance=ExtResource("1_7ql5m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01675, 0)
 
-[node name="PowerUpRed" parent="." instance=ExtResource("3_3wvxi")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0999737, 0.612838, -7.18423)
+[node name="ramp65" parent="." instance=ExtResource("5_xc5y0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -353.4, 1.03237, -552.914)
 
-[node name="PowerUpRed2" parent="." instance=ExtResource("4_8t4os")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 3.26001, 0.00390401, -2.71022)
+[node name="Node3D2" type="Node3D" parent="."]
+script = ExtResource("4_ho2o4")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.21725, 0)
+script = ExtResource("5_snxsd")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_8be7e")
+volume_db = -14.991
+autoplay = true
+
+[node name="Rainbow" parent="." instance=ExtResource("7_xee2g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -31)

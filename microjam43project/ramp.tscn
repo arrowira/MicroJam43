@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwslshu7lku3g"]
+
+[ext_resource type="PackedScene" uid="uid://dc6ppq6kji5i0" path="res://models/ramp.blend" id="1_x74ak"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m50lv"]
+size = Vector3(6.05292, 20.8898, 5.40102)
+
+[node name="ramp" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="ramp" parent="StaticBody3D" instance=ExtResource("1_x74ak")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.219757, 9.9449, -0.0436702)
+shape = SubResource("BoxShape3D_m50lv")

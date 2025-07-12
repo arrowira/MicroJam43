@@ -1,10 +1,25 @@
-[gd_scene load_steps=9 format=3 uid="uid://bo4qvs0iy8il3"]
+[gd_scene load_steps=26 format=3 uid="uid://bo4qvs0iy8il3"]
 
 [ext_resource type="PackedScene" uid="uid://f2c4vjpiali8" path="res://models/car.blend" id="1_mwchs"]
 [ext_resource type="Script" path="res://character_body_3d.gd" id="1_myhv7"]
 [ext_resource type="Shader" path="res://pixelate.gdshader" id="2_co4sn"]
 [ext_resource type="Script" path="res://camera_pivot.gd" id="3_g2hiy"]
 [ext_resource type="Script" path="res://carArea.gd" id="4_oataa"]
+[ext_resource type="AudioStream" uid="uid://bxqwvofp0mh2y" path="res://starPickup.mp3" id="5_10yyl"]
+[ext_resource type="Texture2D" uid="uid://b538hwb8aw3a7" path="res://tireTracks-1.png.png" id="6_l6mro"]
+[ext_resource type="AudioStream" uid="uid://bfd2qwuye2yrw" path="res://explosion-312361.mp3" id="7_bbm8w"]
+[ext_resource type="AudioStream" uid="uid://cwfw4dp1ed8a5" path="res://rainbow.mp3" id="8_q1ies"]
+[ext_resource type="Shader" path="res://RainbowShader.gdshader" id="9_cma6e"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c5xao"]
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48boe"]
+albedo_texture = ExtResource("6_l6mro")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mka0y"]
+material = SubResource("StandardMaterial3D_48boe")
+size = Vector2(0.5, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ggryd"]
 size = Vector3(1.88281, 0.778381, 4.11921)
@@ -12,9 +27,57 @@ size = Vector3(1.88281, 0.778381, 4.11921)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0rav3"]
 size = Vector3(4.28705, 1, 5.98303)
 
+[sub_resource type="Curve" id="Curve_jpo6h"]
+_data = [Vector2(0.0144928, 0.967033), 0.0, 0.0, 0, 0, Vector2(1, 0.021978), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_g7q1n"]
+curve = SubResource("Curve_jpo6h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qm8t0"]
+spread = 180.0
+initial_velocity_min = 12.0
+initial_velocity_max = 24.0
+scale_curve = SubResource("CurveTexture_g7q1n")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p3s7p"]
+albedo_color = Color(0.834018, 0.481682, 0.266551, 1)
+emission_enabled = true
+emission = Color(0.977824, 0.267685, 0.0363052, 1)
+emission_energy_multiplier = 4.01
+
+[sub_resource type="SphereMesh" id="SphereMesh_4lcv2"]
+material = SubResource("StandardMaterial3D_p3s7p")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d4v0d"]
+albedo_color = Color(0.0570543, 0.3185, 0.479008, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8mfm7"]
+material = SubResource("StandardMaterial3D_d4v0d")
+radius = 0.3
+height = 0.6
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ylxs2"]
 shader = ExtResource("2_co4sn")
-shader_parameter/Pixel_Size = 5.0
+shader_parameter/Pixel_Size = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_da6xg"]
+shader = ExtResource("9_cma6e")
+shader_parameter/strength = 0.5
+shader_parameter/speed = 0.5
+shader_parameter/color1 = Color(1, 0, 0, 0.0823529)
+shader_parameter/color2 = Color(0.854902, 1, 0, 0.0745098)
+shader_parameter/x_target = 0.75
+shader_parameter/y_target = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s832o"]
+shader = ExtResource("9_cma6e")
+shader_parameter/strength = 0.657
+shader_parameter/speed = 0.5
+shader_parameter/color1 = Color(0, 0.584314, 0.745098, 0.0862745)
+shader_parameter/color2 = Color(1, 0.576471, 0.54902, 0.0666667)
+shader_parameter/x_target = 0.233
+shader_parameter/y_target = 0.677
 
 [node name="car" type="Node3D"]
 
@@ -23,13 +86,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.559273, 0, 0)
 script = ExtResource("3_g2hiy")
 
 [node name="Camera3D" type="Camera3D" parent="cameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.793449, 0.608637, 0, -0.608637, 0.793449, 0.583768, 7.2451, 11.8292)
+transform = Transform3D(1, 0, 0, 0, 0.906101, 0.423061, 0, -0.423061, 0.906101, 0.349121, 4.45135, 11.8292)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 script = ExtResource("1_myhv7")
 
 [node name="carModel" parent="CharacterBody3D" instance=ExtResource("1_mwchs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0115435, 0.327044, 0.275049)
+
+[node name="trackPlacer" type="GPUParticles3D" parent="CharacterBody3D/carModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.937397, -0.268701, 2.26219)
+amount = 16
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_c5xao")
+draw_pass_1 = SubResource("PlaneMesh_mka0y")
+
+[node name="trackPlacer2" type="GPUParticles3D" parent="CharacterBody3D/carModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.859, -0.267995, 2.287)
+amount = 16
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_c5xao")
+draw_pass_1 = SubResource("PlaneMesh_mka0y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00355601, 0.405942, 0.851187)
@@ -44,11 +121,66 @@ script = ExtResource("4_oataa")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.173431, 0.795197, 0.149841)
 shape = SubResource("BoxShape3D_0rav3")
 
+[node name="powerUpSfx" type="AudioStreamPlayer3D" parent="CharacterBody3D"]
+stream = ExtResource("5_10yyl")
+
+[node name="Timer" type="Timer" parent="CharacterBody3D"]
+
+[node name="Fire" type="GPUParticles3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20257, 1.00371)
+emitting = false
+amount = 100
+lifetime = 0.5
+one_shot = true
+speed_scale = 0.7
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_qm8t0")
+draw_pass_1 = SubResource("SphereMesh_4lcv2")
+
+[node name="CarDebris" type="GPUParticles3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71276, 0.501855)
+emitting = false
+amount = 100
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_qm8t0")
+draw_pass_1 = SubResource("SphereMesh_8mfm7")
+
+[node name="explosionSFX" type="AudioStreamPlayer" parent="CharacterBody3D"]
+stream = ExtResource("7_bbm8w")
+volume_db = -5.622
+
+[node name="RainbowTimer" type="Timer" parent="CharacterBody3D"]
+wait_time = 2.0
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CharacterBody3D"]
+stream = ExtResource("8_q1ies")
+volume_db = -5.621
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
 material = SubResource("ShaderMaterial_ylxs2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RainbowScreen2" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_da6xg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RainbowScreen" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_s832o")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -97,5 +229,53 @@ theme_override_font_sizes/font_size = 50
 text = "8
 "
 
+[node name="DeathScreen" type="Panel" parent="CanvasLayer"]
+visible = false
+offset_left = 121.0
+offset_top = 148.0
+offset_right = 1036.0
+offset_bottom = 554.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/DeathScreen"]
+layout_mode = 0
+offset_left = 193.0
+offset_right = 716.0
+offset_bottom = 137.0
+theme_override_colors/font_color = Color(1, 0.149202, 0.35098, 1)
+theme_override_font_sizes/font_size = 100
+text = "TOO SLOW"
+
+[node name="Label2" type="Label" parent="CanvasLayer/DeathScreen"]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 148.0
+offset_right = 421.0
+offset_bottom = 217.0
+theme_override_font_sizes/font_size = 50
+text = "Rank:"
+
+[node name="Label3" type="Label" parent="CanvasLayer/DeathScreen"]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 149.0
+offset_right = 625.0
+offset_bottom = 218.0
+theme_override_font_sizes/font_size = 50
+text = "BRONZE"
+
+[node name="Button" type="Button" parent="CanvasLayer/DeathScreen"]
+layout_mode = 0
+offset_left = 338.0
+offset_top = 251.0
+offset_right = 555.0
+offset_bottom = 328.0
+theme_override_font_sizes/font_size = 50
+text = "RESTART"
+
 [connection signal="area_entered" from="CharacterBody3D/Area3D" to="CharacterBody3D/Area3D" method="_on_area_entered"]
 [connection signal="body_entered" from="CharacterBody3D/Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="CharacterBody3D/Timer" to="CharacterBody3D" method="_on_timer_timeout"]
+[connection signal="timeout" from="CharacterBody3D/RainbowTimer" to="CharacterBody3D" method="_on_rainbow_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/DeathScreen/Button" to="CharacterBody3D" method="_on_button_pressed"]
