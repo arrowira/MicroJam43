@@ -12,9 +12,9 @@ size = Vector3(1.88281, 0.778381, 4.11921)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0rav3"]
 size = Vector3(4.28705, 1, 5.98303)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bncjx"]
-render_priority = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ylxs2"]
 shader = ExtResource("2_co4sn")
+shader_parameter/Pixel_Size = 5.0
 
 [node name="car" type="Node3D"]
 
@@ -23,9 +23,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.559273, 0, 0)
 script = ExtResource("3_g2hiy")
 
 [node name="Camera3D" type="Camera3D" parent="cameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.923833, 0.382796, 0, -0.382796, 0.923833, 0, 8.038, 13.6884)
-current = true
-fov = 84.6
+transform = Transform3D(1, 0, 0, 0, 0.793449, 0.608637, 0, -0.608637, 0.793449, 0.583768, 7.2451, 11.8292)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 script = ExtResource("1_myhv7")
@@ -49,7 +47,8 @@ shape = SubResource("BoxShape3D_0rav3")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_bncjx")
+visible = false
+material = SubResource("ShaderMaterial_ylxs2")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -66,16 +65,37 @@ size_flags_vertical = 3
 
 [node name="MPHNumber" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 0
-offset_left = 44.0
-offset_right = 86.0
-offset_bottom = 23.0
+offset_left = 133.0
+offset_right = 190.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 50
 text = "20"
 
 [node name="Label" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 0
 offset_right = 42.0
 offset_bottom = 23.0
+theme_override_font_sizes/font_size = 50
 text = "MPH:"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 67.0
+offset_right = 124.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 50
+text = "Minimum MPH:"
+
+[node name="MinMPHNumber" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 381.0
+offset_top = 66.0
+offset_right = 426.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 50
+text = "8
+"
 
 [connection signal="area_entered" from="CharacterBody3D/Area3D" to="CharacterBody3D/Area3D" method="_on_area_entered"]
 [connection signal="body_entered" from="CharacterBody3D/Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]
