@@ -98,18 +98,12 @@ func _on_button_pressed() -> void:
 	get_tree().reload_current_scene()
 
 
-
-func goto_menu(score):
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	var deathNode = get_parent().get_node("Menu/DeathScreen")
-	deathNode.visible = true
-
-
 func _on_timer_timeout() -> void:
 	var deathNode = get_parent().get_node("Menu/DeathScreen")
 	if not deathNode.visible:
 		get_tree().change_scene_to_file("res://menu.tscn")
 		return
+
 
 func _on_rainbow_timer_timeout() -> void:
 	SPEED-=1
