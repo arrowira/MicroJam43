@@ -79,8 +79,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		inRainbow = true
 		$AudioStreamPlayer.play()
 		$RainbowTimer.start()
-		get_parent().get_node("CanvasLayer/RainbowScreen2").visible = true
-		get_parent().get_node("CanvasLayer/RainbowScreen").visible = true
+		get_parent().get_node("RainbowCanvas/RainbowScreen2").visible = true
+		get_parent().get_node("RainbowCanvas/RainbowScreen").visible = true
 		velocity = velocity*3
 		SPEED+=1
 		
@@ -124,6 +124,6 @@ func _on_timer_timeout() -> void:
 func _on_rainbow_timer_timeout() -> void:
 	SPEED-=1
 	inRainbow=false
-	get_parent().get_node("CanvasLayer/RainbowScreen2").visible = false
-	get_parent().get_node("CanvasLayer/RainbowScreen").visible = false
+	get_parent().get_node("RainbowCanvas/RainbowScreen2").visible = false
+	get_parent().get_node("RainbowCanvas/RainbowScreen").visible = false
 	print("exit")
