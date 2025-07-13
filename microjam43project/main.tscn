@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqjtrfv7es4vp"]
+[gd_scene load_steps=10 format=3 uid="uid://cqjtrfv7es4vp"]
 
 [ext_resource type="PackedScene" uid="uid://bo4qvs0iy8il3" path="res://car.tscn" id="1_7ql5m"]
 [ext_resource type="PackedScene" uid="uid://c2d1f0torcro" path="res://world.tscn" id="1_agi6u"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bwslshu7lku3g" path="res://ramp.tscn" id="5_xc5y0"]
 [ext_resource type="AudioStream" uid="uid://ckbubq5qjnmwn" path="res://carGameMusic.mp3" id="6_8be7e"]
 [ext_resource type="PackedScene" uid="uid://dcxojqlmae4wu" path="res://rainbow.tscn" id="7_xee2g"]
+[ext_resource type="PackedScene" uid="uid://ceu0701avjuu4" path="res://power_up_green.tscn" id="8_653i0"]
+[ext_resource type="PackedScene" uid="uid://cqqt0ewkvgrvb" path="res://power_up_blue.tscn" id="9_u7oa6"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -31,4 +33,13 @@ volume_db = -14.991
 autoplay = true
 
 [node name="Rainbow" parent="." instance=ExtResource("7_xee2g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -31)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -303.704)
+
+[node name="PowerUpGreen" parent="." instance=ExtResource("8_653i0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370625, 0.410677, -21.1378)
+
+[node name="PowerUpRed" parent="." instance=ExtResource("9_u7oa6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.592516, 0.410677, -136.544)
+
+[node name="Rainbow3" parent="." instance=ExtResource("7_xee2g")]
+transform = Transform3D(-0.0472982, 0, -0.998881, 0, 1, 0, 0.998881, 0, -0.0472982, -6.53058, 0.00390401, 375.539)
