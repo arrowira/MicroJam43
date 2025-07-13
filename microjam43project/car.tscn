@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://bfd2qwuye2yrw" path="res://explosion-312361.mp3" id="7_bbm8w"]
 [ext_resource type="AudioStream" uid="uid://cwfw4dp1ed8a5" path="res://rainbow.mp3" id="8_q1ies"]
 [ext_resource type="Shader" path="res://RainbowShader.gdshader" id="9_cma6e"]
+[ext_resource type="Script" path="res://debug_car_drive_in_circles.gd" id="11_idfin"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c5xao"]
 gravity = Vector3(0, 0, 0)
@@ -239,6 +240,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="debug_car_drive_in_circles" type="Node" parent="."]
+script = ExtResource("11_idfin")
+radius = 12.03
+speed = 0.955
+rot_off = -3.125
 
 [connection signal="area_entered" from="CharacterBody3D/Area3D" to="CharacterBody3D/Area3D" method="_on_area_entered"]
 [connection signal="body_entered" from="CharacterBody3D/Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]
