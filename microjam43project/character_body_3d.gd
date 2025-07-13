@@ -91,7 +91,6 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		get_parent().get_node("RainbowCanvas/RainbowScreen").visible = true
 		velocity = velocity*3
 		SPEED+=1
-		
 
 
 func _on_button_pressed() -> void:
@@ -99,10 +98,7 @@ func _on_button_pressed() -> void:
 
 
 func _on_timer_timeout() -> void:
-	var deathNode = get_parent().get_node("Menu/DeathScreen")
-	if not deathNode.visible:
-		get_tree().change_scene_to_file("res://menu.tscn")
-		return
+	get_tree().change_scene_to_file("res://menu.tscn")
 
 
 func _on_rainbow_timer_timeout() -> void:

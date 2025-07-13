@@ -240,35 +240,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Menu" type="CanvasLayer" parent="."]
-
-[node name="DeathScreen" type="Panel" parent="Menu"]
-visible = false
-offset_left = 121.0
-offset_top = 148.0
-offset_right = 1036.0
-offset_bottom = 554.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="Menu/DeathScreen"]
-layout_mode = 0
-offset_left = 193.0
-offset_right = 716.0
-offset_bottom = 137.0
-theme_override_colors/font_color = Color(1, 0.149202, 0.35098, 1)
-theme_override_font_sizes/font_size = 100
-text = "TOO SLOW"
-
-[node name="Label2" type="Label" parent="Menu/DeathScreen"]
-layout_mode = 0
-offset_left = 286.0
-offset_top = 148.0
-offset_right = 421.0
-offset_bottom = 217.0
-theme_override_font_sizes/font_size = 50
-text = "Rank:"
-
 [connection signal="area_entered" from="CharacterBody3D/Area3D" to="CharacterBody3D/Area3D" method="_on_area_entered"]
 [connection signal="body_entered" from="CharacterBody3D/Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="CharacterBody3D/Timer" to="CharacterBody3D" method="_on_timer_timeout"]
