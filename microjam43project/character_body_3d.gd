@@ -49,7 +49,8 @@ func _physics_process(delta: float) -> void:
 		$carModel.queue_free()
 		var deathModel = brokenCar.instantiate()
 		deathModel.global_transform.origin = position
-		
+		get_parent().get_parent().get_node("music").stop()
+		$deathSFX.play()
 		ended = true
 		add_child(deathModel)
 		$explosionSFX.play()

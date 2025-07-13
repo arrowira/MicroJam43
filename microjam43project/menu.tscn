@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgf3isknif6vo"]
+[gd_scene load_steps=4 format=3 uid="uid://bgf3isknif6vo"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_77q3w"]
 [ext_resource type="Texture2D" uid="uid://dr35wk6moauga" path="res://menu-bg.png" id="1_emjcj"]
 [ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="3_tcabo"]
-[ext_resource type="AudioStream" uid="uid://b1max21vovs5" path="res://doomlikeTapeStop.mp3" id="4_hfvdc"]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_77q3w")
@@ -65,11 +64,6 @@ offset_top = 301.0
 offset_right = 329.0
 offset_bottom = 324.0
 text = "Ranking"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_hfvdc")
-volume_db = -14.0
-autoplay = true
 
 [connection signal="text_submitted" from="NameEntry" to="." method="_on_name_entry_text_submitted"]
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]

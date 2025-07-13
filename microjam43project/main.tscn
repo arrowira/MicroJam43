@@ -27,7 +27,7 @@ script = ExtResource("4_ho2o4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.21725, 0)
 script = ExtResource("5_snxsd")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_8be7e")
 volume_db = -14.991
 autoplay = true
