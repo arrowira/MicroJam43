@@ -4,7 +4,7 @@ var G: Node
 
 func _ready() -> void:
 	G = get_node("/root/Global")
-	get_node("Best").text = "Best min speed: " + str(int(G.minNum))
+	get_node("Best").text = "Min speed: " + str(int(G.minNum))
 	get_node("Ranking").text = getRankingName(G.minNum)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
