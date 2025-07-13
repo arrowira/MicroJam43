@@ -152,12 +152,21 @@ stream = ExtResource("7_bbm8w")
 volume_db = -5.622
 
 [node name="RainbowTimer" type="Timer" parent="CharacterBody3D"]
-wait_time = 2.0
+wait_time = 2.5
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CharacterBody3D"]
 stream = ExtResource("8_q1ies")
 volume_db = -5.621
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3159, 1.47437, 0.502846)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.84505, 1.37357, 0.614827)
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010782, 1.99045, 1.99871)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
