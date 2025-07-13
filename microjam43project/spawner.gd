@@ -21,9 +21,9 @@ func _physics_process(delta: float) -> void:
 			var greenPup := green.instantiate()
 			var redPup := red.instantiate()
 			var bluePup := blue.instantiate()
-			greenPup.global_transform.origin = Vector3(randf_range(-worldSize / 2, worldSize/ 2),-5,randf_range(-worldSize / 2, worldSize / 2))
-			redPup.global_transform.origin = Vector3(randf_range(-worldSize / 2, worldSize/ 2),-5,randf_range(-worldSize / 2, worldSize / 2))
-			bluePup.global_transform.origin = Vector3(randf_range(-worldSize / 2, worldSize/ 2),-5,randf_range(-worldSize / 2, worldSize / 2))
+			greenPup.global_transform.origin = Vector3(randf_range(-worldSize / 2., worldSize/ 2.),-5,randf_range(-worldSize / 2., worldSize / 2.))
+			redPup.global_transform.origin = Vector3(randf_range(-worldSize / 2., worldSize/ 2.),-5,randf_range(-worldSize / 2., worldSize / 2.))
+			bluePup.global_transform.origin = Vector3(randf_range(-worldSize / 2., worldSize/ 2.),-5,randf_range(-worldSize / 2., worldSize / 2.))
 			
 			add_child(redPup)
 			add_child(bluePup)

@@ -29,9 +29,9 @@ func _physics_process(delta: float) -> void:
 	get_parent().get_node("CanvasLayer").get_node("Control").get_node("MPHNumber").text = str(int(velocity.length()))
 	get_parent().get_node("CanvasLayer").get_node("Control").get_node("MinMPHNumber").text = str(int(minNum))
 	# Apply forward/reverse force
-	var forward_dir = -transform.basis.z.normalized()
+	var forward_dir2 = -transform.basis.z.normalized()
 	if input_forward != 0 and !ended:
-		velocity += input_forward*forward_dir*SPEED
+		velocity += input_forward*forward_dir2*SPEED
 		velocity = velocity.lerp(Vector3.ZERO, delta * 1.1)
 	else:
 		velocity = velocity.lerp(Vector3.ZERO, delta * 2)
