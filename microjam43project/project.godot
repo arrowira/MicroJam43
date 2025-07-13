@@ -56,6 +56,10 @@ backward={
 ]
 }
 
+[quiver]
+
+general/auth_token="qcmzNaczIc659onp0Q7TjiWHxCLjnWd29iQfvH84"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
