@@ -60,7 +60,7 @@ height = 0.6
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ylxs2"]
 shader = ExtResource("2_co4sn")
-shader_parameter/Pixel_Size = 4.0
+shader_parameter/Pixel_Size = 5.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_da6xg"]
 shader = ExtResource("9_cma6e")
