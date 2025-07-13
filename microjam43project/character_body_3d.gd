@@ -90,9 +90,14 @@ func _on_button_pressed() -> void:
 	get_tree().reload_current_scene()
 
 
-func _on_timer_timeout() -> void:
+
+func goto_menu(score):
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_parent().get_node("CanvasLayer/DeathScreen").visible = true
+
+	print("post score")
+	await Leaderboards.post_guest_score('microjam43-highestminmph-F4E8', score, "auto", {})
+
 	if minNum<10:
 		
 		get_parent().get_node("CanvasLayer/DeathScreen/Label3").text = "copper"
@@ -111,6 +116,10 @@ func _on_timer_timeout() -> void:
 	else:
 		get_parent().get_node("CanvasLayer/DeathScreen/label3").text = "Jack Traven"
 
+
+func _on_timer_timeout() -> void:
+	if not get_parent().get_node("CanvasLayer/DeathScreen").visible:
+		goto_menu(int(minNum))
 
 func _on_rainbow_timer_timeout() -> void:
 	SPEED-=1
