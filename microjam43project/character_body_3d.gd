@@ -11,7 +11,15 @@ static var brokenCar := preload("res://broken_car.tscn")
 func _ready() -> void:
 	get_parent().get_node("CanvasLayer").get_node("Control").get_node("MinMPHNumber").text = str(-6)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-var minNum = -6.0
+	get_node("/root/Global").minNum = -2
+
+func setMin(mph):
+	get_node("/root/Global").minNum = mph
+	
+func getMin() -> float:
+	return get_node("/root/Global").minNum
+	
+
 func _physics_process(delta: float) -> void:
 	#track place frenquency
 	if !ended:
@@ -25,9 +33,9 @@ func _physics_process(delta: float) -> void:
 	var input_steer = Input.get_action_strength("right") - Input.get_action_strength("left")
 	# friction
 	if !ended:
-		minNum+=1/60.0
+		setMin(getMin()+1/60.0)
 	get_parent().get_node("CanvasLayer").get_node("Control").get_node("MPHNumber").text = str(int(velocity.length()))
-	get_parent().get_node("CanvasLayer").get_node("Control").get_node("MinMPHNumber").text = str(int(minNum))
+	get_parent().get_node("CanvasLayer").get_node("Control").get_node("MinMPHNumber").text = str(int(getMin()))
 	# Apply forward/reverse force
 	var forward_dir2 = -transform.basis.z.normalized()
 	if input_forward != 0 and !ended:
@@ -36,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = velocity.lerp(Vector3.ZERO, delta * 2)
 	
-	if velocity.length()<minNum and !ended:
+	if velocity.length()<getMin() and !ended:
 		#game over
 		$carModel.queue_free()
 		var deathModel = brokenCar.instantiate()
@@ -96,33 +104,12 @@ func goto_menu(score):
 	var deathNode = get_parent().get_node("Menu/DeathScreen")
 	deathNode.visible = true
 
-	print("post score")
-	await Leaderboards.post_guest_score('microjam43-highestminmph-F4E8', score, "auto", {})
-
-	var ranking = ""
-	if minNum<10:
-		ranking = "copper"
-	elif minNum<30:
-		ranking = "bronze"
-	elif minNum<50:
-		ranking = "silver"
-	elif minNum<70:
-		ranking = "gold"
-	elif minNum<90:
-		ranking = "platinum"
-	elif minNum<110:
-		ranking = "emerald"
-	elif minNum<150:
-		ranking = "diamond"
-	else:
-		ranking = "Jack Traven"
-	deathNode.get_node("Label3").text = ranking
-
 
 func _on_timer_timeout() -> void:
 	var deathNode = get_parent().get_node("Menu/DeathScreen")
 	if not deathNode.visible:
-		goto_menu(int(minNum))
+		get_tree().change_scene_to_file("res://menu.tscn")
+		return
 
 func _on_rainbow_timer_timeout() -> void:
 	SPEED-=1

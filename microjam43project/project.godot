@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Leaderboards="*res://addons/quiver_leaderboards/leaderboards.tscn"
 PlayerAccounts="*res://addons/quiver_player_accounts/player_accounts.tscn"
+Global="*res://global.gd"
 
 [display]
 

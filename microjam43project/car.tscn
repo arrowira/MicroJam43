@@ -269,26 +269,7 @@ offset_bottom = 217.0
 theme_override_font_sizes/font_size = 50
 text = "Rank:"
 
-[node name="Label3" type="Label" parent="Menu/DeathScreen"]
-layout_mode = 0
-offset_left = 425.0
-offset_top = 149.0
-offset_right = 625.0
-offset_bottom = 218.0
-theme_override_font_sizes/font_size = 50
-text = "BRONZE"
-
-[node name="Button" type="Button" parent="Menu/DeathScreen"]
-layout_mode = 0
-offset_left = 338.0
-offset_top = 251.0
-offset_right = 555.0
-offset_bottom = 328.0
-theme_override_font_sizes/font_size = 50
-text = "RESTART"
-
 [connection signal="area_entered" from="CharacterBody3D/Area3D" to="CharacterBody3D/Area3D" method="_on_area_entered"]
 [connection signal="body_entered" from="CharacterBody3D/Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="CharacterBody3D/Timer" to="CharacterBody3D" method="_on_timer_timeout"]
 [connection signal="timeout" from="CharacterBody3D/RainbowTimer" to="CharacterBody3D" method="_on_rainbow_timer_timeout"]
-[connection signal="pressed" from="Menu/DeathScreen/Button" to="CharacterBody3D" method="_on_button_pressed"]

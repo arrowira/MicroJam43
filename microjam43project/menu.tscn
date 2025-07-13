@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpnmbkcdlhu1n"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_77q3w"]
+[ext_resource type="Texture2D" uid="uid://dr35wk6moauga" path="res://menu-bg.png" id="1_emjcj"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_77q3w")
+
+[node name="Menu-bg" type="Sprite2D" parent="."]
+position = Vector2(574, 328.25)
+scale = Vector2(1.00348, 1.01008)
+texture = ExtResource("1_emjcj")
+
+[node name="NameEntry" type="LineEdit" parent="."]
+offset_left = 781.0
+offset_top = 453.0
+offset_right = 919.0
+offset_bottom = 509.0
+placeholder_text = "name"
+max_length = 5
+
+[node name="Best" type="Label" parent="."]
+offset_left = 275.0
+offset_top = 183.0
+offset_right = 452.0
+offset_bottom = 206.0
+text = "Best min speed: 0 MPH"
+
+[node name="Restart" type="Button" parent="."]
+offset_left = 388.0
+offset_top = 435.0
+offset_right = 605.0
+offset_bottom = 512.0
+theme_override_font_sizes/font_size = 50
+text = "RESTART"
+
+[node name="Ranking" type="Label" parent="."]
+offset_left = 269.0
+offset_top = 215.0
+offset_right = 469.0
+offset_bottom = 284.0
+theme_override_font_sizes/font_size = 50
+text = "BRONZE"
+
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
