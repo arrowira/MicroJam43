@@ -158,16 +158,19 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CharacterBody3D"]
 stream = ExtResource("8_q1ies")
-volume_db = -5.621
+volume_db = -10.306
 
 [node name="OmniLight3D" type="OmniLight3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3159, 1.47437, 0.502846)
+light_energy = 0.3
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.84505, 1.37357, 0.614827)
+light_energy = 0.3
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010782, 1.99045, 1.99871)
+light_energy = 0.3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
