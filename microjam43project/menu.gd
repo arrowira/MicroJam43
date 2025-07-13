@@ -52,7 +52,7 @@ func offerToSaveScore():
 func postScore():
 	print("post score")
 	await Leaderboards.post_guest_score(G.leaderboard_id, float(int(G.minNum)), G.playerName, {})
-	await get_node("LeaderboardUI").refresh_scores()
+	#await get_node("LeaderboardUI").refresh_scores()
 
 func _on_restart_pressed() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
