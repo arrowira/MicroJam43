@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bo4qvs0iy8il3"]
+[gd_scene load_steps=27 format=3 uid="uid://bo4qvs0iy8il3"]
 
 [ext_resource type="PackedScene" uid="uid://f2c4vjpiali8" path="res://models/car.blend" id="1_mwchs"]
 [ext_resource type="Script" path="res://character_body_3d.gd" id="1_myhv7"]
@@ -243,6 +243,7 @@ grow_vertical = 2
 
 [node name="debug_car_drive_in_circles" type="Node" parent="."]
 script = ExtResource("11_idfin")
+enabled = false
 radius = 12.03
 speed = 0.955
 rot_off = -3.125

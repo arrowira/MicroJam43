@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+var G: Node
 
 var SPEED = 0.3
 var turnSpeed = 0.03
@@ -8,7 +9,8 @@ var ended = false
 var inRainbow = false
 static var brokenCar := preload("res://broken_car.tscn")
 
-func _ready() -> void:
+func _ready() -> void:	
+	G = get_node("/root/Global")
 	get_parent().get_node("CanvasLayer").get_node("Control").get_node("MinMPHNumber").text = str(-6)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	get_node("/root/Global").minNum = -2
@@ -101,6 +103,9 @@ func _on_button_pressed() -> void:
 
 
 func _on_timer_timeout() -> void:
+	# this is to be submitted only once (maybe after player enters name) and then set back to 0
+	G.scoreToSubmit = float(int(G.minNum))
+
 	get_tree().change_scene_to_file("res://menu.tscn")
 
 

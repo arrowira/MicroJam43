@@ -8,8 +8,10 @@ func _ready() -> void:
 	get_node("Ranking").text = getRankingName(G.minNum)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
+
 	if G.minNum < 1:
-		tooSad()
+		# score is too low to save
+		hideNameField()
 	else:
 		offerToSaveScore()
 
@@ -33,7 +35,7 @@ func getRankingName(minNum):
 		return "Jack Traven"
 
 
-func tooSad():
+func hideNameField():
 	get_node("NameEntry").visible = false
 	get_node("NameEntrySave").visible = false
 
@@ -42,6 +44,7 @@ func offerToSaveScore():
 	var existingName = G.playerName;
 	get_node("NameEntry").text = existingName
 	if existingName:
+		hideNameField()
 		postScore.call_deferred()
 		# then user presses restart
 	else:
@@ -51,8 +54,19 @@ func offerToSaveScore():
 
 func postScore():
 	print("post score")
-	await Leaderboards.post_guest_score(G.leaderboard_id, float(int(G.minNum)), G.playerName, {})
+	if G.scoreToSubmit == 0:
+		return
+	await Leaderboards.post_guest_score(G.leaderboard_id, G.scoreToSubmit, G.playerName, {})
+	G.scoreToSubmit = 0
+	reloadLeaderboard()
+
+
+func reloadLeaderboard():
+	# doesn't work- type error on 'root'
 	#await get_node("LeaderboardUI").refresh_scores()
+
+	get_tree().change_scene_to_file("res://menu.tscn")
+
 
 func _on_restart_pressed() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
