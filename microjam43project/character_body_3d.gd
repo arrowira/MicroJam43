@@ -21,11 +21,9 @@ func getMin() -> float:
 	
 
 func _physics_process(delta: float) -> void:
-	#track place frenquency
 	if !ended:
-		$carModel/trackPlacer.amount_ratio=velocity.length()/16
-		$carModel/trackPlacer2.amount_ratio=velocity.length()/16
-	
+		track_place_frequency()
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -67,6 +65,11 @@ func _physics_process(delta: float) -> void:
 			rotate_y(-turn_amount*30)
 		
 	move_and_slide()
+
+func track_place_frequency():
+	$carModel/trackPlacer.amount_ratio=velocity.length()/16
+	$carModel/trackPlacer2.amount_ratio=velocity.length()/16
+
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.name == "powerUpBodyR":
