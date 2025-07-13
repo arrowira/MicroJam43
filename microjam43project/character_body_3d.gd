@@ -93,32 +93,35 @@ func _on_button_pressed() -> void:
 
 func goto_menu(score):
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	get_parent().get_node("CanvasLayer/DeathScreen").visible = true
+	var deathNode = get_parent().get_node("Menu/DeathScreen")
+	deathNode.visible = true
 
 	print("post score")
 	await Leaderboards.post_guest_score('microjam43-highestminmph-F4E8', score, "auto", {})
 
+	var ranking = ""
 	if minNum<10:
-		
-		get_parent().get_node("CanvasLayer/DeathScreen/Label3").text = "copper"
+		ranking = "copper"
 	elif minNum<30:
-		get_parent().get_node("CanvasLayer/DeathScreen/Label3").text = "bronze"
+		ranking = "bronze"
 	elif minNum<50:
-		get_parent().get_node("CanvasLayer/DeathScreen/Label3").text = "silver"
+		ranking = "silver"
 	elif minNum<70:
-		get_parent().get_node("CanvasLayer/DeathScreen/Label3").text = "gold"
+		ranking = "gold"
 	elif minNum<90:
-		get_parent().get_node("CanvasLayer/DeathScreen/Label3").text = "platinum"
+		ranking = "platinum"
 	elif minNum<110:
-		get_parent().get_node("CanvasLayer/DeathScreen/label3").text = "emerald"
+		ranking = "emerald"
 	elif minNum<150:
-		get_parent().get_node("CanvasLayer/DeathScreen/label3").text = "diamond"
+		ranking = "diamond"
 	else:
-		get_parent().get_node("CanvasLayer/DeathScreen/label3").text = "Jack Traven"
+		ranking = "Jack Traven"
+	deathNode.get_node("Label3").text = ranking
 
 
 func _on_timer_timeout() -> void:
-	if not get_parent().get_node("CanvasLayer/DeathScreen").visible:
+	var deathNode = get_parent().get_node("Menu/DeathScreen")
+	if not deathNode.visible:
 		goto_menu(int(minNum))
 
 func _on_rainbow_timer_timeout() -> void:
