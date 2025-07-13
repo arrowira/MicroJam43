@@ -17,3 +17,5 @@ mono_crash\..*\.json
 
 \.pytest_cache/
 \.vscode/
+# symlink to 4.3.stable
+microjam43project/godot
